@@ -3,6 +3,8 @@ import os
 import json
 import pprint
 import requests
+from .trello_card import TrelloCard
+from .trello_list import TrelloList
 from .exceptions import StatusCodeError
 
 class TrelloAPI:
