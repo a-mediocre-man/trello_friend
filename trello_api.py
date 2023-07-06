@@ -3,6 +3,7 @@ import os
 import json
 import pprint
 import requests
+from .exceptions import StatusCodeError
 
 class TrelloAPI:
     def __init__(self, token, key, secret):
@@ -10,7 +11,6 @@ class TrelloAPI:
         self.key = key
         self.secret = secret
         self.base_url = "https://api.trello.com/1"
-
 
     def test_create_card(self, id_list):
         url = f"{self.base_url}/cards"
@@ -24,9 +24,7 @@ class TrelloAPI:
         if response.status_code == 200:
             return response.json()
         else:
-            print(response.status_code)
-            print(response.text)
-            return False
+            raise StatusCodeError(response.status_code)
 
     def get_boards(self):
         url = f"{self.base_url}/members/me/boards"
