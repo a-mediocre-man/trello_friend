@@ -1,0 +1,2 @@
+#some things should be ignored
+__pycache__/
