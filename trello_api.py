@@ -39,20 +39,7 @@ class TrelloAPI:
         if response.status_code == 200:
             return response.json()
         else:
-            return False
-
-    def get_lists(self, board_id):
-        url = f"{self.base_url}/boards/{board_id}/lists"
-        query = {
-            "key": self.key,
-            "token": self.token
-        }
-
-        response = requests.get(url, params=query)
-        if response.status_code == 200:
-            return response.json()
-        else:
-            return False
+            raise StatusCodeError(response.status_code)
 
     def get_board(self, board_id):
         url = f"{self.base_url}/boards/{board_id}"
@@ -71,6 +58,21 @@ class TrelloAPI:
         else:
             print(response.status_code)
             print(response.text)
+            return False
+
+
+
+    def get_lists(self, board_id):
+        url = f"{self.base_url}/boards/{board_id}/lists"
+        query = {
+            "key": self.key,
+            "token": self.token
+        }
+
+        response = requests.get(url, params=query)
+        if response.status_code == 200:
+            return response.json()
+        else:
             return False
 
     def update_board_description(self, board_id, description):
