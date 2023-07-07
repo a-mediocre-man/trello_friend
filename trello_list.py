@@ -11,4 +11,3 @@ class TrelloList:
 
     def __repr__(self):
         return f'<TrelloList {self.name} {self.id}>'
-
